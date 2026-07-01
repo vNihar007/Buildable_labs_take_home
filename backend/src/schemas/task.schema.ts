@@ -23,4 +23,14 @@ export const createTaskSchema = z.object({
         .optional()
 });
 
+
+export const updateTaskSchema = createTaskSchema
+.partial()
+.refine(
+    (data) => Object.keys(data).length > 0 ,
+    {
+        message: "At least one field must be provided for update"
+    }
+)
+
 export type CreateTaskDto = z.infer<typeof createTaskSchema>

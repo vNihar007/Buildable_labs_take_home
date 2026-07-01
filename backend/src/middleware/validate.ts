@@ -1,7 +1,7 @@
-import { AnyZodObject } from "zod/v3";
-import { Request, Response, NextFunction } from "express";
+import type { ZodObject } from "zod";
+import type { Request, Response, NextFunction } from "express";
 
-export const validate =(schema: AnyZodObject) => {
+export const validate =(schema: ZodObject) => {
     return (req: Request, res: Response, next: NextFunction) => {
         const result = schema.safeParse(req.body) ;
         if (!result.success){
