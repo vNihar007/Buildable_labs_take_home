@@ -1,5 +1,6 @@
 import sql from "../config/supabase.js";
 import type { CreateTaskDto } from "../schemas/task.schema.js";
+import type { GetTasksQueryDto } from "../schemas/query.schema.js";
 import type { Task } from "../types/task.types.js";
 
 
@@ -33,18 +34,76 @@ class TaskRepository {
     }
 
 
-    async findAll(){
-        return await sql
-        `
-        SELECT *
+    async findAll(query: GetTasksQueryDto){
+        const{
+            page,
+            limit,
+            priority,
+            completed,
+            search,
+            sortBy,
+            order
+        } = query;
 
-        FROM tasks
+        const offset = (page - 1) * limit;
+        const filters = [sql`deleted_at IS NULL`];
+        if (priority) {
+            filters.push(sql`priority = ${priority}`);
+        } ;
+        if (completed !== undefined){
+            filters.push(sql`completed = ${completed}`);
+        } ;
+        if(search) {
+            filters.push(sql`title ILIKE ${`%${search}%`}`);
+        } ;
 
-        WHERE deleted_at IS NULL
+        const whereClause = filters.reduce(
+            (acc, filter, i) => i === 0 ? sql`WHERE ${filter}` : sql`${acc} AND ${filter}`,
+            sql``
+        );
 
-        ORDER BY created_at DESC;
+        const sortColumns = {
+            created_at: sql`created_at`,
+            updated_at: sql`updated_at`,
+            priority: sql`priority`,
+            due_date: sql`due_date`
+        };
 
-        `
+        const sortColumn = sortColumns[sortBy as keyof typeof sortColumns];
+
+        const sortDirection =
+            order === "asc"
+                ? sql`ASC`
+                : sql`DESC`;
+
+        const tasks = await sql<Task[]>`
+            SELECT *
+            FROM tasks
+            ${whereClause}
+            ORDER BY ${sortColumn} ${sortDirection}
+            LIMIT ${limit}
+            OFFSET ${offset};
+        `;
+        const [countResult] = await sql<{count: string}[]>`
+            SELECT COUNT(*) as count
+            FROM tasks
+            ${whereClause}
+        `;
+        const count = countResult?.count || '0';
+        return {
+            tasks,
+
+            pagination: {
+                page,
+
+                limit,
+
+                total: Number(count),
+
+                totalPages: Math.ceil(Number(count) / limit),
+            },
+        };
+
     }
 
     async findById(id:string):Promise<Task | null >{

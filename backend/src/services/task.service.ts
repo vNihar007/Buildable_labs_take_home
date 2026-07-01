@@ -1,13 +1,14 @@
 import taskRepo from "../repositories/task.repo.js";
 import type { CreateTaskDto } from "../schemas/task.schema.js";
+import type { GetTasksQueryDto } from "../schemas/query.schema.js";
 import ApiError from "../utils/ApiErorr.js";
 
 class TaskService {
     async createTask(payload: CreateTaskDto) {
         return taskRepo.create(payload);
     }
-    async getTasks(){
-        return taskRepo.findAll();
+    async getTasks(query: GetTasksQueryDto){
+        return taskRepo.findAll(query);
     }
     async getTaksById(id:string){
         const task = await taskRepo.findById(id);
