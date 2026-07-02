@@ -353,15 +353,6 @@ Refresh Tasks
 
 ---
 
-# Screenshots
-
-| Home                 | Create               | Edit                 |
-| -------------------- | -------------------- | -------------------- |
-| Add screenshots here | Add screenshots here | Add screenshots here |
-
----
-
-# Author
 
 **Varun Nihar**
 
