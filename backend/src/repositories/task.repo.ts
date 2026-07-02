@@ -1,6 +1,7 @@
 import sql from "../config/supabase.js";
 import type { CreateTaskDto } from "../schemas/task.schema.js";
 import type { GetTasksQueryDto } from "../schemas/query.schema.js";
+import type { UpdateTaskDto } from "../schemas/task.schema.js";
 import type { Task } from "../types/task.types.js";
 
 
@@ -118,7 +119,7 @@ class TaskRepository {
 
     async update(
     id: string,
-    payload: Partial<CreateTaskDto>
+    payload: UpdateTaskDto
     ): Promise<Task | null> {
 
     const updates: string[] = [];

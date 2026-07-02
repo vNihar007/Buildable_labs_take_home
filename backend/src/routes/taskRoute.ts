@@ -7,7 +7,11 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 
 const router = Router();
 
-router.post('/',validate(createTaskSchema),asyncHandler(taskController.create))
+// router.post('/',validate(createTaskSchema),asyncHandler(taskController.create))
+router.post("/", (req, res, next) => {
+  console.log("POST /tasks HIT");
+  next();
+}, validate(createTaskSchema), asyncHandler(taskController.create));
 router.get('/',asyncHandler(taskController.getAll))
 router.get('/:id',asyncHandler(taskController.getById))
 router.patch('/:id',validate(updateTaskSchema),asyncHandler(taskController.update))
