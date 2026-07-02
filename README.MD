@@ -12,8 +12,13 @@ The project consists of:
 
 # Demo
 
-[▶ Watch Demo](./images/ScreenRecording_07-02-2026 07-39-57_1.mp4)
-[▶ Watch Demo](./images/ScreenRecording_07-02-2026 07-41-42_1.mp4)
+## 📱 App Demo
+
+[▶ Watch App Demo](./images/demo.mp4)
+
+## 📡 Offline Sync Demo
+
+[▶ Watch Offline Sync Demo](./images/offline-sync.mp4)
 
 *logs for backend and mobile app are available in the respective folders*
 > (https://www.loom.com/share/eff998edf75648e6a91574c4e5888ba7) 
