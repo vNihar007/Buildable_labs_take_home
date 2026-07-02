@@ -12,13 +12,35 @@ The project consists of:
 
 # Demo
 
-## 📱 App Demo
+## 📱 Task Management Demo
 
-[▶ Watch App Demo](./images/demo.mp4)
+This demo showcases:
 
-## 📡 Offline Sync Demo
+- ✅ Create Task
+- 📋 View All Tasks
+- 🔍 Search Tasks
+- 🏷️ Filter Tasks
+- ↕️ Sort Tasks
+- ✏️ Edit Task
+- 🗑️ Delete Task
+- ✔️ Mark Task as Complete
+- 🔄 Pull-to-Refresh
 
-[▶ Watch Offline Sync Demo](./images/offline-sync.mp4)
+🎬 **Watch Demo**  
+https://drive.google.com/file/d/1SLQT164c6rGUd2G-rgpD9X_T5FgkfA-A/view?usp=sharing
+---
+
+## 📡 Offline Synchronization Demo
+
+This demo showcases:
+
+- 📴 Working without an internet connection
+- 📦 Queueing Create / Update / Delete operations locally
+- 🌐 Automatic synchronization when connectivity is restored
+- 🔄 Automatic task list refresh after successful sync
+
+🎬 **Watch Demo**  
+https://drive.google.com/file/d/19_WxTp1lA9lSOMEAB2Sr5vTdbgXdptyk/view?usp=sharing
 
 *logs for backend and mobile app are available in the respective folders*
 > (https://www.loom.com/share/eff998edf75648e6a91574c4e5888ba7) 
